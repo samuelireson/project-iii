@@ -1,0 +1,16 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{amssymb}
+\usetikzlibrary{calc, positioning}
+\begin{document}
+\begin{tikzpicture}
+	\node (0) at (0,0){$ \Omega^0\left(\mathbb{R}^{2}\right) $};
+	\node (1) at (0,-2){$ \Omega^1\left(\mathbb{R}^{2}\right) $};
+	\node (2) at (0,-4){$ \Omega^2\left(\mathbb{R}^{2}\right) $};
+
+	\foreach \i/\j in {0/1, 1/2}{
+			\draw[->] (\i) to node[right]{$ \mathrm{d} $} (\j);
+		}
+\end{tikzpicture}
+\end{document}

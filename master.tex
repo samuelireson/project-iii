@@ -1,0 +1,150 @@
+%! TeX program = lualatex
+\documentclass[11pt]{report}
+\usepackage{fontspec}
+\newfontfamily\chapfont{Colonna MT}[Scale=2, Ligatures=TeX]
+\newfontfamily\accentfont{CMU Serif}
+
+\usepackage[
+    sorting=nyt,
+    style=verbose,
+    backend=biber
+]{biblatex}
+\addbibresource{bibliography.bib}
+\setlength\bibitemsep{2\itemsep}
+
+\usepackage{import}
+
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\thepage}
+\setlength{\headheight}{2cm}
+\renewcommand{\chaptermark}[1]{\markboth{\thechapter. \MakeUppercase{#1}}{}}
+\renewcommand{\headrule}{}
+
+\usepackage{titlesec}
+\titleformat{\chapter}[display]
+  {\chapfont\centering\Huge}{\thechapter}{15pt}{\LARGE}
+\titlespacing*{\chapter}{0cm}{0cm}{15pt}
+
+\titleformat{\section}
+	{\sc}{\thesection}{1em}{\Large}
+
+\titleformat{\subsection}
+  {\sc}{\thesubsection}{1em}{\large}
+
+\usepackage{tocloft}
+\renewcommand{\contentsname}{\hfill\chapfont\LARGE Contents\hfill}
+\renewcommand{\cftchappresnum}{\chapfont\Large}
+\renewcommand{\cftchapfont}{\LARGE\sc}
+\renewcommand{\cftsecfont}{\large\sc}
+\renewcommand{\cftsubsecfont}{\sc}
+\setcounter{tocdepth}{2}
+\setlength{\cftbeforechapskip}{2\baselineskip}
+\setlength{\cftbeforesecskip}{\baselineskip}
+\setlength{\cftbeforesubsecskip}{0.75\baselineskip}
+\setlength{\cftchapnumwidth}{1cm}
+
+%Chapter outline env
+\newenvironment{chout}{\begin{center}\it}{\end{center}}
+
+\usepackage{xifthen}
+\usepackage{pdfpages}
+\usepackage{transparent}
+\usepackage[nottoc]{tocbibind}
+
+\usepackage{graphicx}
+\graphicspath{ {./figures} }
+
+\usepackage{xcolor}
+\usepackage{float}
+\usepackage{amsmath, amsfonts, amsthm, amssymb}
+\usepackage[noabbrev]{cleveref}
+\usepackage{enumerate}
+
+% Figure related
+\usepackage{tikz}
+\usetikzlibrary{calc}
+\usepackage{pgf}
+\usepackage{caption}
+\usepackage{subcaption}
+
+% Page Geometry
+\usepackage{geometry}
+\geometry{a4paper, inner=2cm, outer=6.85cm, top=2cm, bottom=2cm, twoside,
+marginparwidth=4.85cm}
+\savegeometry{tufte}
+
+\usepackage[framemethod=TikZ, innertopmargin=2mm, innerbottommargin=2mm,
+innerleftmargin=2mm]{mdframed}
+
+\usepackage{sidenotes}
+\usepackage{mparhack}
+
+% Theorems
+\usepackage{thmtools}
+\declaretheoremstyle[headfont=\sc, bodyfont=\normalfont, mdframed={
+needspace=4\baselineskip, nobreak=false } ]{fullbox}
+\declaretheoremstyle[headfont=\sc, bodyfont=\normalfont, mdframed={
+rightline=false, topline=false, bottomline=false, needspace=4\baselineskip,
+nobreak=false }]{sideline}
+
+\declaretheorem[numberwithin=chapter, style=fullbox, name=Definition]{definition}
+\declaretheorem[sibling=definition, style=fullbox, name=Theorem]{theorem}
+\declaretheorem[sibling=definition, style=fullbox, name=Lemma]{lemma}
+\declaretheorem[sibling=definition, style=fullbox, name=Corollary]{corollary}
+\declaretheorem[sibling=definition, style=fullbox, name=Proposition]{proposition}
+\declaretheorem[sibling=definition, style=sideline, name=Example]{example}
+\declaretheorem[sibling=definition, style=sideline, name=Nonexample]{nonexample}
+\declaretheorem[style=sideline, numbered=no, name=Remark]{remark}
+\declaretheorem[style=sideline, numbered=no, name=Notation]{notation}
+
+\setlength{\parskip}{0.3\baselineskip}
+\setlength{\marginparpush}{0.5cm}
+\setlength{\parindent}{0pt}
+
+%Commands
+\renewcommand{\vec}[1]{\textbf{#1}}
+\renewcommand{\epsilon}{\varepsilon}
+\newcommand{\defined}[1]{\textit{#1}\index{#1}}
+
+%Operators
+\DeclareMathOperator{\mult}{mult}
+\DeclareMathOperator{\ord}{ord}
+\DeclareMathOperator{\res}{Res}
+\let\d\relax
+\DeclareMathOperator{\d}{\, d\!}
+\DeclareMathOperator{\im}{im}
+\DeclareMathOperator{\coker}{coker}
+\DeclareMathOperator{\supp}{supp}
+
+%Indices
+\usepackage{imakeidx}
+\makeindex[columns=3, intoc, options = -s index.ist]
+
+\author{Samuel Ireson}
+\title{Riemann Surfaces}
+
+\begin{document}
+\pagenumbering{roman}
+\newgeometry{inner=4cm, outer=4cm, top=2cm, bottom=2cm}
+\input{chapters/titlepage}
+\cleardoublepage
+\tableofcontents
+\restoregeometry
+
+\pagenumbering{arabic}
+\input{chapters/introduction}
+\input{chapters/preliminaries}
+\input{chapters/manifold-theory}
+\input{chapters/riemann-surfaces}
+\input{chapters/functions-and-maps}
+\input{chapters/differential-forms}
+\input{chapters/poisson-equation}
+\input{chapters/riemann-roch-theorem}
+\input{chapters/conclusion}
+
+\newgeometry{inner=2cm, outer=2cm, top=2cm, bottom=2cm}
+\printindex
+\printbibliography[heading=bibintoc]
+\end{document}

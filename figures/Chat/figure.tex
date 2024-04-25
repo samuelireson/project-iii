@@ -1,0 +1,14 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{amssymb}
+
+\begin{document}
+\begin{tikzpicture}
+  \draw (0,0) circle (2);
+  \draw[dashed] (-2,0) arc[start angle=-180, end angle=0, x radius=2, y
+    radius=0.5];
+  \fill (0,2) circle (0.05) node[above]{$ \infty $};
+  \node at (-2,2) {$ \hat{\mathbb{C}} $};
+\end{tikzpicture}
+\end{document}

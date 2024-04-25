@@ -1,0 +1,75 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{amssymb}
+\usetikzlibrary{calc, positioning, decorations.markings}
+\begin{document}
+\begin{tikzpicture}
+	\coordinate[label=below left:$ 0 $] (0) at (-2,-2);
+	\coordinate[label=below right:$ 1 $] (1) at (2,-2);
+	\coordinate[label=above left:$ i $] (i) at (-2,2);
+	\coordinate[label=above:$ 1+i $] (1+i) at (2,2);
+
+	\begin{scope}[decoration={
+					markings,
+					mark=at position 0.5 with {\arrow{>}}
+				}]
+		\draw[postaction=decorate] (0) -- (1);
+		\draw[postaction=decorate] (i) -- (1+i);
+	\end{scope}
+
+	\begin{scope}[decoration={
+					markings,
+					mark=at position 0.5 with {\arrow{>>}}
+				}]
+		\draw[postaction=decorate] (0) -- (i);
+		\draw[postaction=decorate] (1) -- (1+i);
+	\end{scope}
+
+	\begin{scope}[xshift=5cm]
+		\coordinate[label=below:$ 0 $] (0') at (-2,-1);
+		\coordinate[label=below:$ 1 $] (1') at (2,-1);
+		\draw (-2,1) to (2,1);
+		\begin{scope}[decoration={
+						markings,
+						mark=at position 0.5 with {\arrow{>}}
+					}]
+			\draw[postaction=decorate] (0') to (1');
+		\end{scope}
+
+		\begin{scope}[decoration={
+						markings,
+						mark=at position 0.5 with {\arrow{>>}}
+					}]
+			\draw[postaction=decorate] (-2,1) arc[start angle=90, end angle=270, x
+					radius=0.25, y radius=1];
+			\draw[postaction=decorate] (2,1) arc[start angle=90, end angle=270, x
+					radius=0.25, y radius=1];
+			\draw[postaction=decorate] (2,-1) arc[start angle=-90, end angle=90, x
+					radius=0.25, y radius=1];
+		\end{scope}
+	\end{scope}
+
+	\begin{scope}[xshift=10cm]
+		\draw (0,0) ellipse (2 and 1.2);
+		\coordinate[label=below:$ 0 $] (b) at (0,-1.2);
+		\begin{scope}[scale=0.7]
+			\draw[looseness=1.2] (-1.4,0.4) to[out=210, in=-30] node[coordinate](t){}
+			(1.4,0.4);
+			\clip[looseness=1.2] (-1.4,0.4) to[out=210, in=-30] (1.4,0.4)
+			to cycle;
+			\draw (0,-1.8) circle (2.2);
+		\end{scope}
+		\begin{scope}[decoration={
+						markings,
+						mark=at position 0.5 with {\arrow{>>}}
+					}]
+			\draw[postaction=decorate, out=-150, in=150] (t) to (b);
+		\end{scope}
+
+	\end{scope}
+
+
+
+\end{tikzpicture}
+\end{document}

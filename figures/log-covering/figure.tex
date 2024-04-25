@@ -1,0 +1,30 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usepackage{amssymb}
+\usetikzlibrary{calc, positioning}
+\begin{document}
+\begin{tikzpicture}[y = {(0,0.25)}, scale=1.5]
+
+	\coordinate (b') at (0,-2);
+	\coordinate (b) at (0,0);
+	\coordinate (m) at (0,2);
+	\coordinate (t) at (0,4);
+	\coordinate (t') at (0,6);
+
+	\filldraw[fill=white] ([shift=(-60:2)]b) arc (-60:240:2);
+	\filldraw[fill=white] ([shift=(-60:2)]m) arc (-60:240:2);
+	\filldraw[fill=white] ([shift=(-60:2)]t) arc (-60:240:2);
+	\draw[rounded corners=2mm] ([shift=(240:2)]b) arc (240:260:2) --
+	([shift=(-80:2)]m) arc (-80:-60:2);
+	\draw[rounded corners=2mm] ([shift=(240:2)]m) arc (240:260:2) --
+	([shift=(-80:2)]t) arc (-80:-60:2);
+	\draw[rounded corners=2mm] ([shift=(-60:2)]b) arc (-60:-80:2) --
+	([shift=(260:2)]b') arc (260:240:2);
+	\draw[dotted] ([shift=(240:2)]b') arc (240:220:2);
+	\draw[rounded corners=2mm] ([shift=(240:2)]t) arc (240:260:2) --
+	([shift=(-80:2)]t') arc (-80:-60:2);
+	\draw[dotted] ([shift=(-60:2)]t') arc (-60:-40:2);
+
+\end{tikzpicture}
+\end{document}

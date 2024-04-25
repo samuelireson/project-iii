@@ -1,0 +1,17 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+  \node at (-2,2) (X){$ X $};
+  \node at (2,2) (Y){$ Y $};
+  \node at (-2,-2) (U){$ U $};
+  \node at (2,-2) (Ut){$ \tilde{U} $};
+
+  \draw[->] (X) -- (Y) node[midway, above]{$ F $};
+  \draw[->] (X) -- (U) node[midway, left]{$ \phi $};
+  \draw[->] (Y) -- (Ut) node[midway, right]{$ \varphi $};
+  \draw[->] (U) -- (Ut) node[midway, below]{$ z \mapsto z^k $} node[midway,
+    above]{$ f = \varphi \circ F \circ \phi ^{-1} $};
+\end{tikzpicture}
+\end{document}

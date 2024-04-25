@@ -1,0 +1,19 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+	\draw[->] (-2,0) -- (2,0);
+	\draw[->] (0,-2) -- (0,2);
+
+  \fill (1,1.5) circle (0.05) node[anchor=north west]{$ (x,y) $};
+	\fill (-1,-1.5) circle (0.05) node[anchor=south east]{$ \lambda (x,y) $};
+	\begin{scope}
+		\clip (-2,-2) rectangle (2,2);
+		\draw[dashed] (-2,-3) -- (2,3);
+	\end{scope}
+	
+  \node[align=center] at (1,-1) {$ [x:y] $\\$ = $\\$ [\lambda x: \lambda
+    y] $};
+\end{tikzpicture}
+\end{document}

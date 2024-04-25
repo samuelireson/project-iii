@@ -1,0 +1,15 @@
+\documentclass{standalone}
+\usepackage{tikz}
+
+\begin{document}
+\begin{tikzpicture}
+	\draw (0,0) node(X){$ X $};
+	\draw (3.5,0) node(X/G){$ X/G $};
+	\draw (0,-3.5) node(C){$ \mathbb{C} $};
+
+	\draw[->] (X) -- (X/G) node[midway, above]{$ \pi $};
+	\draw[->] (X/G) -- (C) node[midway, right]{$ \psi $};
+	\draw[->] (X) -- (C) node[midway, left]{$ \phi $};
+\end{tikzpicture}
+\end{document}
+

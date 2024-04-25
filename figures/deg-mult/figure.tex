@@ -1,0 +1,80 @@
+\documentclass{standalone}
+
+\usepackage{tikz}
+\usetikzlibrary{calc, positioning}
+
+\begin{document}
+\begin{tikzpicture}
+  \begin{scope}
+    \node at (135:2.8) {$ X $};
+    \draw (0,0) ellipse (3 and 1.8);
+    \begin{scope}
+      \draw[looseness=1.2] (-1.4,0.4) to[out=210, in=-30] (1.4,0.4);
+      \clip[looseness=1.2] (-1.4,0.4) to[out=210, in=-30] (1.4,0.4)
+      to cycle;
+      \draw (0,-1.8) circle (2.2);
+    \end{scope}
+    \node (x1) at (1.8,0.8){};
+    \node (x2) at (1.8,-0.6){};
+    \node (x3) at (-2.1,-0.6){};
+    \node (t) at (0,-1.8){};
+
+    \filldraw[fill=figure, fill opacity=0.5, dashed] ($ (x1) + (-0.19, 0.09) $)
+    circle (0.5);
+
+    \fill (x1) circle (0.05) node[left]{$ x_1 $};
+    \fill (x2) circle (0.05) node[left]{$ x_2 $};
+    \fill (x3) circle (0.05) node[above]{$ x_3 $};
+  \end{scope}
+
+  \begin{scope}[yshift=-2.8cm]
+    \node at (-135:2.8) {$ Y $};
+    \draw (0,0) ellipse (3 and 1.8);
+    \begin{scope}
+      \draw[looseness=1.2] (-1.4,0.4) to[out=210, in=-30] (1.4,0.4);
+      \clip[looseness=1.2] (-1.4,0.4) to[out=210, in=-30] (1.4,0.4)
+      to cycle;
+      \draw (0,-1.8) circle (2.2);
+    \end{scope}
+
+    \node (y1) at (1.8,-0.5){};
+    \node (y2) at (-2.1,-0.3){};
+    \node (b) at (0,1.8){};
+
+    \filldraw[dashed, fill=figure, fill opacity=0.5] ($ (y1) - (0,0.1) $) circle (0.6);
+
+    \fill (y1) circle (0.05) node[below]{$ y_1 $};
+    \fill (y2) circle (0.05) node[below]{$ y_2 $};
+  \end{scope}
+
+  \begin{scope}[yshift=-0.4cm, xshift=5cm]
+    \draw[->] (-1.5,0) -- (1.5,0);
+    \draw[->] (0,-1.5) -- (0,1.5);
+
+    \filldraw[dashed, fill=figure, fill opacity = 0.5] (0,0) circle (0.8);
+
+    \node (tr) at (-0.6, 0.6){};
+    \node (f1) at (-0.4, -0.7){};
+  \end{scope}
+
+  \begin{scope}[yshift=-3.6cm, xshift=5cm]
+    \draw[->] (-1.5,0) -- (1.5,0);
+    \draw[->] (0,-1.5) -- (0,1.5);
+
+    \filldraw[dashed, fill=figure, fill opacity = 0.5] (0,0) circle (0.8);
+
+    \node (br) at (-0.6, -0.6){};
+    \node (f2) at (-0.4, 0.7){};
+  \end{scope}
+
+  \draw[dashed] (x1) -- (y1);
+  \draw[dashed] (x3) -- (y2);
+  \draw[->] (t) to node[left]{$ F $} (b);
+
+  \draw[->, bend left] (x1) to node[above]{$ \phi $} (tr);
+  \draw[->, bend right] (y1) to node[below]{$ \psi $} (br);
+
+  \draw[->] (f1) to node[left]{$ z \mapsto z ^{m_1} $} (f2);
+\end{tikzpicture}
+\end{document}
+
